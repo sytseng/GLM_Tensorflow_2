@@ -10,7 +10,7 @@ Written by [Shih-Yi Tseng](https://github.com/sytseng) from the [Harvey Lab](htt
 - The Pickle file `example_data_glm.pkl` in the [data](https://github.com/sytseng/GLM_Tensorflow_2/tree/main/data) folder contains example calcium imaging data used in the second tutorial.
 
 ## Software requirements
-The code was developed with the following Python package:
+The code was developed with the following Python packages:
 - numpy version 1.21.6
 - scipy version 1.7.3
 - sklearn version 1.0.2
