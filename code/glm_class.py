@@ -7,7 +7,7 @@
 # keras version 2.8.0
 # matplotlib version 3.2.2
 
-## The code works most efficiently on a GPU. Please refer to the associated iPython notebook "Tutorial_for_using_GLM_class.ipynb" for how to use it. Written by Shih-Yi Tseng from the Harvey Lab at Harvard Medical School, with special acknowledgements to Matthias Minderer and Selmaan Chettih. Last updated: 2022/08/23
+## The code works most efficiently on a GPU. Please refer to the associated iPython notebook "Tutorial_for_using_GLM_class.ipynb" for how to use it (https://github.com/sytseng/GLM_Tensorflow_2/tree/main/tutorial). Written by Shih-Yi Tseng from the Harvey Lab at Harvard Medical School, with special acknowledgements to Matthias Minderer and Selmaan Chettih. Last updated: 2022/08/23
 
 ## References:
 # Tseng, S.-Y., Chettih, S.N., Arlt, C., Barroso-Luque, R., and Harvey, C.D. (2022). Shared and specialized coding across posterior cortical areas for dynamic navigation decisions. Neuron 110, 2484–2502.e16
