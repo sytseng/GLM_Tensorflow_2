@@ -74,7 +74,7 @@ model_cv = glm.GLM_CV(n_folds = 5, auto_split = True, split_by_group = True, spl
 1. Fit the model on training data
 ```
 model_cv.fit(X, Y, [train_idx, val_idx, group_idx, initial_w0, initial_w, 
-             feature_group_size, verbose])
+                    feature_group_size, verbose])
 ```
 
 2. Model selection over regularization strengths based on CV held-out data
