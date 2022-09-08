@@ -149,6 +149,6 @@ model_cv = glm.GLM_CV(n_folds = 5, auto_split = True, split_by_group = True, spl
     
 5. Compute null deviance for each response variable for each datapoint
     ```
-    null_dev = glm.null_deviance(y, loss_type = 'poisson')
+    null_dev_pt = glm.null_deviance(y, loss_type = 'poisson')
 
     ```
