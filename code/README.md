@@ -51,7 +51,12 @@ model.selected_lambda
 model.selected_lambda_ind
 ```
 
-3. Loss during fitting and the associated lambda values
+3. Fraction deviance explained on validation data for selected models
+```
+model.selected_frac_dev_expl_val
+```
+
+4. Loss during fitting and the associated lambda values
 ```
 model.loss_trace
 model.lambda_trace
@@ -82,4 +87,29 @@ model_cv.fit(X, Y, [train_idx, val_idx, group_idx, initial_w0, initial_w,
 model_cv.select_model([se_fraction, min_lambda, make_fig])
 ```
 
-Same `evaluate`, `predict`, and model attributes as GLM class.
+3. Make prediction using CV fold-specific weights of selected models on CV held-out data
+   X must be some variants of X_train (same samples with some features altered, e.g. zeroed or shuffled)
+   Used in quantification of feature contribution with "model breakdwon" procedure
+```
+model_cv.make_prediction_cv(X)
+```
+
+4. Same `evaluate`, `predict` as GLM class
+
+#### Important model attributes
+1. Selected weights and intercepts
+```
+model.selected_w
+model.selected_w0
+```
+
+2. Selected regularization strengths and indices
+```
+model.selected_lambda
+model.selected_lambda_ind
+```
+
+3. Fraction deviance explained on CV held-out data for selected models
+```
+model.selected_frac_dev_expl_cv
+```
