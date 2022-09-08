@@ -99,7 +99,9 @@ model_cv.predict(X)
 ```
 
 5. Make prediction using CV fold-specific weights of selected models on CV held-out data
+
    Used in quantification of feature contribution with "model breakdwon" procedure
+   
    X must be some variants of X_train (same samples with some features altered, e.g. zeroed or shuffled) 
 ```
 model_cv.make_prediction_cv(X)
