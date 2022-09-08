@@ -1153,18 +1153,18 @@ def pointwise_deviance(y_true, y_pred, loss_type = 'poisson'):
     loss_type: {'gaussian', 'poisson', 'binominal'}, default = 'poisson'
 
     Returns::
-    dev: pointwise deviance value, ndarray of shape of y_true and y_pred
+    dev_pt: pointwise deviance value, ndarray of shape of y_true and y_pred
     '''
 
     assert (y_true.shape == y_true.shape), "Shapes of y_true and y_pred don't match!"
     if loss_type == 'poisson':
-        dev = 2.0 * (y_true * (np.log(stable(y_true)) - np.log(stable(y_pred))) + y_pred - y_true)
+        dev_pt = 2.0 * (y_true * (np.log(stable(y_true)) - np.log(stable(y_pred))) + y_pred - y_true)
     elif loss_type == 'gaussian':
-        dev =  (y_true - y_pred)**2
+        dev_pt =  (y_true - y_pred)**2
     elif loss_type == 'binominal':
-        dev =  2.0 * (-y_true*np.log(stable(y_pred)) - (1.-y_true)*np.log(stable(1.-y_pred))
+        dev_pt =  2.0 * (-y_true*np.log(stable(y_pred)) - (1.-y_true)*np.log(stable(1.-y_pred))
                       +y_true*np.log(stable(y_true)) + (1.-y_true)*np.log(stable(1.-y_true)))
-    return dev
+    return dev_pt
 
 
 def pointwise_null_deviance(y, loss_type = 'poisson'):
@@ -1175,10 +1175,11 @@ def pointwise_null_deviance(y, loss_type = 'poisson'):
     loss_type: {'gaussian', 'poisson', 'binominal'}, default = 'poisson'
 
     Returns::
-    dev: pointwise deviance value, ndarray of shape of y
+    null_dev_pt: pointwise null deviance value, ndarray of shape of y
     '''
     mean_y = np.mean(y, axis=0)
-    return pointwise_deviance(y, mean_y, loss_type = loss_type)
+    null_dev_pt = pointwise_deviance(y, mean_y, loss_type = loss_type)
+    return null_dev_pt
 
 
 def null_deviance(y, loss_type = 'poisson'):
@@ -1189,19 +1190,20 @@ def null_deviance(y, loss_type = 'poisson'):
     loss_type: {'gaussian', 'poisson', 'binominal'}, default = 'poisson'
 
     Returns::
-    dev: average null deviance for each response, ndarray of shape of (n_responses,)
+    null_dev: average null deviance for each response, ndarray of shape of (n_responses,)
     '''
     mean_y = np.mean(y, axis=0)
-    return np.sum(pointwise_deviance(y, mean_y, loss_type = loss_type), axis = 0)
+    null_dev = np.sum(pointwise_deviance(y, mean_y, loss_type = loss_type), axis = 0)
+    return null_dev
 
 
-def deviance(mu, y, loss_type = 'poisson'):
+def deviance(y_pred, y_true, loss_type = 'poisson'):
     '''
     Compute fraction deviance explained, model deviance and null deviance for data with given loss type, 
     averaged over n_samples for each response 
     Input parameters::
-    mu: predicted values, ndarray of shape (n_samples, n_responses)
-    y: true values, ndarray of shape (n_samples, n_responses)
+    y_pred: predicted values, ndarray of shape (n_samples, n_responses)
+    y_true: true values, ndarray of shape (n_samples, n_responses)
     loss_type: {'gaussian', 'poisson', 'binominal'}, default = 'poisson'
 
     Returns::
@@ -1210,16 +1212,15 @@ def deviance(mu, y, loss_type = 'poisson'):
     d_null: average null deviance for each response, ndarray of shape of (n_responses,)
     '''
 
-    mean_y = np.mean(y, axis=0)
-    d_null = np.sum(pointwise_deviance(y, mean_y, loss_type = loss_type), axis = 0)
-    d_model = np.sum(pointwise_deviance(y, mu, loss_type = loss_type), axis = 0)
+    mean_y = np.mean(y_true, axis=0)
+    d_null = np.sum(pointwise_deviance(y_true, mean_y, loss_type = loss_type), axis = 0)
+    d_model = np.sum(pointwise_deviance(y_true, y_pred, loss_type = loss_type), axis = 0)
     frac_dev_expl = 1.0 - d_model/stable(d_null)    
 
     if isinstance(frac_dev_expl, type(y)): # if dev is still an ndarray (skip if is a single number)
         frac_dev_expl[mean_y == 0] = 0  # If mean_y == 0, we get 0 for model and null deviance, i.e. 0/0 in the deviance fraction.
     
     return frac_dev_expl, d_model, d_null
-
 
 def make_prediction(X, w, w0, activation = 'exp'):
     '''
