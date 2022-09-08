@@ -10,8 +10,8 @@ import glm_class as glm
 ### GLM class (GLM without cross validation)
 #### Initialize a GLM
 ```
-model = glm.GLM(activation = 'linear', loss_type = 'gaussian', 
-                regularization = 'elastic_net', lambda_series = 10.0 ** np.linspace(3, -6, 10), 
+model = glm.GLM(activation = 'exp', loss_type = 'poisson',
+                regularization = 'elastic_net', lambda_series = 10.0 ** np.linspace(-1, -8, 30), 
                 l1_ratio = 0., smooth_strength = 0., 
                 optimizer = 'adam', learning_rate = 1e-2, momentum = 0.5, 
                 min_iter_per_lambda = 100, max_iter_per_lambda = 10**4, 
@@ -67,8 +67,8 @@ model = glm.GLM(activation = 'linear', loss_type = 'gaussian',
 #### Initialize a GLM_CV
 ```
 model_cv = glm.GLM_CV(n_folds = 5, auto_split = True, split_by_group = True, split_random_state = 42,
-                      activation = 'linear', loss_type = 'gaussian', 
-                      regularization = 'elastic_net', lambda_series = 10.0 ** np.linspace(3, -6, 10), 
+                      activation = 'exp', loss_type = 'poisson',
+                      regularization = 'elastic_net', lambda_series = 10.0 ** np.linspace(-1, -8, 30), 
                       l1_ratio = 0., smooth_strength = 0., 
                       optimizer = 'adam', learning_rate = 1e-2, momentum = 0.5, 
                       min_iter_per_lambda = 100, max_iter_per_lambda = 10**4, 
