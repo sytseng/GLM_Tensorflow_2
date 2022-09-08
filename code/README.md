@@ -125,3 +125,81 @@ model_cv = glm.GLM_CV(n_folds = 5, auto_split = True, split_by_group = True, spl
     ```
     model_cv.selected_frac_dev_expl_cv
     ```
+
+### Utility funcitons
+1. Make prediction given design matrix, weights and intercepts, and activation function
+    ```
+    def make_prediction(X, w, w0, activation = 'exp'):
+        '''
+        Make GLM prediction
+        Input parameters::
+        X: design matrix, ndarray of shape (n_samples, n_features)
+        w: weight matrix, ndarray of shape (n_features, n_responses)
+        w0: intercept matrix, ndarray of shape (1, n_responses)
+        activation: {'linear', 'exp', 'sigmoid', 'relu', 'softplus'}, default = 'exp'
+
+        Returns::
+        prediction: model prediction, ndarray of shape (n_samples, n_responses)
+        '''
+    ```
+
+2. Compute deviance for each response variable with model prediction
+    ```
+    def deviance(mu, y, loss_type = 'poisson'):
+        '''
+        Compute fraction deviance explained, model deviance and null deviance for data with given loss type, 
+        averaged over n_samples for each response 
+        Input parameters::
+        mu: predicted values, ndarray of shape (n_samples, n_responses)
+        y: true values, ndarray of shape (n_samples, n_responses)
+        loss_type: {'gaussian', 'poisson', 'binominal'}, default = 'poisson'
+
+        Returns::
+        frac_dev_expl: average fraction deviance explained for each response, ndarray of shape of (n_responses,)
+        d_model: average model deviance for each response, ndarray of shape of (n_responses,)
+        d_null: average null deviance for each response, ndarray of shape of (n_responses,)
+        '''
+    ```
+    
+3. Compute null deviance for each response variable
+    ```
+    def null_deviance(y, loss_type = 'poisson'):
+        '''
+        Compute null deviance for data with given loss type, average over n_samples for each response 
+        Input parameters::
+        y: input data, ndarray of shape (n_samples, n_responses)
+        loss_type: {'gaussian', 'poisson', 'binominal'}, default = 'poisson'
+
+        Returns::
+        dev: average null deviance for each response, ndarray of shape of (n_responses,)
+        '''
+    ```
+    
+4. Compute deviance for each response variable with model prediction for each datapoint
+    ```
+    def pointwise_deviance(y_true, y_pred, loss_type = 'poisson'):
+      '''
+      Compute pointwise deviance for data with given loss type 
+      Input parameters::
+      y_true: true values, ndarray
+      y_pred: predicted values, ndarray
+      loss_type: {'gaussian', 'poisson', 'binominal'}, default = 'poisson'
+
+      Returns::
+      dev: pointwise deviance value, ndarray of shape of y_true and y_pred
+      '''
+    ```
+    
+5. Compute null deviance for each response variable for each datapoint
+    ```
+    def pointwise_null_deviance(y, loss_type = 'poisson'):
+      '''
+      Compute pointwise null deviance for data with given loss type 
+      Input parameters::
+      y: input data, ndarray
+      loss_type: {'gaussian', 'poisson', 'binominal'}, default = 'poisson'
+
+      Returns::
+      dev: pointwise deviance value, ndarray of shape of y
+      '''
+    ```
