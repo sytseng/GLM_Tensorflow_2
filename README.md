@@ -8,6 +8,7 @@ Written by [Shih-Yi Tseng](https://github.com/sytseng) from the [Harvey Lab](htt
 - The Python script `glm_class.py` in the [code](https://github.com/sytseng/GLM_Tensorflow_2/tree/main/code) folder contains GLM class definitions and utility functions for fitting GLM in Tensorflow 2.
 - The two notebooks `Tutorial_for_using_GLM_class.ipynb` and `Tutorial_for_fitting_neural_calcium_imaging_data_with_GLM.ipynb` in the [tutorial](https://github.com/sytseng/GLM_Tensorflow_2/tree/main/tutorial) folder contain tutorials for how to use the GLM_class code and how to fit neural calcim imaging data with GLMs, respectively.
 - The Pickle file `example_data_glm.pkl` in the [data](https://github.com/sytseng/GLM_Tensorflow_2/tree/main/data) folder contains example calcium imaging data used in the second tutorial.
+- The PDF file `A guide for fitting generalized linear models in Tensorflow.pdf` in the [presentation](https://github.com/sytseng/GLM_Tensorflow_2/tree/main/presentation) folder contains slides for a short presentation of how to use the code and fit neural calcium imaging data with GLMs.
 
 ## Software requirements
 The code was developed with the following Python packages:
