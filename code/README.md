@@ -88,29 +88,38 @@ model_cv.fit(X, Y, [train_idx, val_idx, group_idx, initial_w0, initial_w,
 model_cv.select_model([se_fraction, min_lambda, make_fig])
 ```
 
-3. Make prediction using CV fold-specific weights of selected models on CV held-out data
-   X must be some variants of X_train (same samples with some features altered, e.g. zeroed or shuffled)
+3. Evaluate model performance (on training, validation, or test data); same as GLM class
+```
+frac_dev_expl, dev_model, dev_null, dev_expl = model.evaluate(X, Y, [make_fig])
+```
+
+4. Make prediction (on training, validation, or test data); same as GLM class
+```
+model.predict(X)
+```
+
+5. Make prediction using CV fold-specific weights of selected models on CV held-out data
    Used in quantification of feature contribution with "model breakdwon" procedure
+   X must be some variants of X_train (same samples with some features altered, e.g. zeroed or shuffled) 
 ```
 model_cv.make_prediction_cv(X)
 ```
 
-4. Same `evaluate`, `predict` as GLM class
 
 #### Important model attributes
-1. Selected weights and intercepts
+1. Selected weights and intercepts; same as GLM class
 ```
 model.selected_w
 model.selected_w0
 ```
 
-2. Selected regularization strengths and indices
+2. Selected regularization strengths and indices; same as GLM class
 ```
 model.selected_lambda
 model.selected_lambda_ind
 ```
 
-3. Fraction deviance explained on CV held-out data for selected models
+3. Fraction deviance explained on CV held-out data for selected models (with CV fold-specific weights)
 ```
 model.selected_frac_dev_expl_cv
 ```
