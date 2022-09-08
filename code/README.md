@@ -7,7 +7,8 @@ Load the code as a module
 import glm_class as glm
 ```
 
-### Initialize a GLM (without cross validation)
+### GLM class (GLM without cross validation)
+#### Initialize a GLM
 ```
 model = glm.GLM(activation = 'linear', loss_type = 'gaussian', 
                 regularization = 'elastic_net', lambda_series = 10.0 ** np.linspace(3, -6, 10), 
@@ -62,8 +63,8 @@ model.loss_trace
 model.lambda_trace
 ```
 
-
-### Initialize a GLM_CV (GLM with cross validation)
+### GLM_CV class (GLM with cross validation)
+#### Initialize a GLM_CV
 ```
 model_cv = glm.GLM_CV(n_folds = 5, auto_split = True, split_by_group = True, split_random_state = 42,
                       activation = 'linear', loss_type = 'gaussian', 
