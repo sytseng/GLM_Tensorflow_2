@@ -90,12 +90,12 @@ model_cv.select_model([se_fraction, min_lambda, make_fig])
 
 3. Evaluate model performance (on training, validation, or test data); same as GLM class
 ```
-frac_dev_expl, dev_model, dev_null, dev_expl = model.evaluate(X, Y, [make_fig])
+frac_dev_expl, dev_model, dev_null, dev_expl = model_cv.evaluate(X, Y, [make_fig])
 ```
 
 4. Make prediction (on training, validation, or test data); same as GLM class
 ```
-model.predict(X)
+model_cv.predict(X)
 ```
 
 5. Make prediction using CV fold-specific weights of selected models on CV held-out data
@@ -109,17 +109,17 @@ model_cv.make_prediction_cv(X)
 #### Important model attributes
 1. Selected weights and intercepts; same as GLM class
 ```
-model.selected_w
-model.selected_w0
+model_cv.selected_w
+model_cv.selected_w0
 ```
 
 2. Selected regularization strengths and indices; same as GLM class
 ```
-model.selected_lambda
-model.selected_lambda_ind
+model_cv.selected_lambda
+model_cv.selected_lambda_ind
 ```
 
 3. Fraction deviance explained on CV held-out data for selected models (with CV fold-specific weights)
 ```
-model.selected_frac_dev_expl_cv
+model_cv.selected_frac_dev_expl_cv
 ```
