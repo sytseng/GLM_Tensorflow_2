@@ -13,7 +13,7 @@ import glm_class as glm
 model = glm.GLM(activation = 'exp', loss_type = 'poisson',
                 regularization = 'elastic_net', lambda_series = 10.0 ** np.linspace(-1, -8, 30), 
                 l1_ratio = 0., smooth_strength = 0., 
-                optimizer = 'adam', learning_rate = 1e-2, momentum = 0.5, 
+                optimizer = 'adam', learning_rate = 1e-3, momentum = 0.5, 
                 min_iter_per_lambda = 100, max_iter_per_lambda = 10**4, 
                 num_iter_check = 100, convergence_tol = 1e-6)
 ```
@@ -70,7 +70,7 @@ model_cv = glm.GLM_CV(n_folds = 5, auto_split = True, split_by_group = True, spl
                       activation = 'exp', loss_type = 'poisson',
                       regularization = 'elastic_net', lambda_series = 10.0 ** np.linspace(-1, -8, 30), 
                       l1_ratio = 0., smooth_strength = 0., 
-                      optimizer = 'adam', learning_rate = 1e-2, momentum = 0.5, 
+                      optimizer = 'adam', learning_rate = 1e-3, momentum = 0.5, 
                       min_iter_per_lambda = 100, max_iter_per_lambda = 10**4, 
                       num_iter_check = 100, convergence_tol = 1e-6)
 
