@@ -1163,7 +1163,7 @@ def pointwise_deviance(y_true, y_pred, loss_type = 'poisson'):
         dev_pt =  (y_true - y_pred)**2
     elif loss_type == 'binominal':
         dev_pt =  2.0 * (-y_true*np.log(stable(y_pred)) - (1.-y_true)*np.log(stable(1.-y_pred))
-                      +y_true*np.log(stable(y_true)) + (1.-y_true)*np.log(stable(1.-y_true)))
+                         +y_true*np.log(stable(y_true)) + (1.-y_true)*np.log(stable(1.-y_true)))
     return dev_pt
 
 
