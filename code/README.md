@@ -129,26 +129,26 @@ model_cv = glm.GLM_CV(n_folds = 5, auto_split = True, split_by_group = True, spl
 ### Utility funcitons
 1. Make prediction given design matrix, weights and intercepts, and activation function
     ```
-    prediction = make_prediction(X, w, w0, activation = 'exp') 
+    prediction = glm.make_prediction(X, w, w0, activation = 'exp') 
     ```
 
 2. Compute fraction deviance explained, model deviance and null deviance for each response variable with model prediction
     ```
-    frac_dev_expl, d_model, d_null = deviance(y_pred, y_true, loss_type = 'poisson')
+    frac_dev_expl, d_model, d_null = glm.deviance(y_pred, y_true, loss_type = 'poisson')
     ```
     
 3. Compute null deviance for each response variable
     ```
-    null_dev = null_deviance(y, loss_type = 'poisson')
+    null_dev = glm.null_deviance(y, loss_type = 'poisson')
     ```
     
 4. Compute deviance for each response variable with model prediction for each datapoint
     ```
-    dev_pt = pointwise_deviance(y_true, y_pred, loss_type = 'poisson')
+    dev_pt = glm.pointwise_deviance(y_true, y_pred, loss_type = 'poisson')
     ```
     
 5. Compute null deviance for each response variable for each datapoint
     ```
-    null_dev = null_deviance(y, loss_type = 'poisson')
+    null_dev = glm.null_deviance(y, loss_type = 'poisson')
 
     ```
