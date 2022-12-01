@@ -773,7 +773,7 @@ class GLM_CV(GLM):
         if split_random_state is not None:
             self.split_random_state = split_random_state
         else:
-            self.split_random_state = np.random.randint(0, high=2**32)
+            self.split_random_state = np.random.randint(0, high=2**31)
 
         
     def _cv_split(self, X, Y, group_idx = None):
@@ -1217,7 +1217,7 @@ def deviance(y_pred, y_true, loss_type = 'poisson'):
     d_model = np.sum(pointwise_deviance(y_true, y_pred, loss_type = loss_type), axis = 0)
     frac_dev_expl = 1.0 - d_model/stable(d_null)    
 
-    if isinstance(frac_dev_expl, type(y)): # if dev is still an ndarray (skip if is a single number)
+    if isinstance(frac_dev_expl, type(y_true)): # if dev is still an ndarray (skip if is a single number)
         frac_dev_expl[mean_y == 0] = 0  # If mean_y == 0, we get 0 for model and null deviance, i.e. 0/0 in the deviance fraction.
     
     return frac_dev_expl, d_model, d_null
