@@ -527,12 +527,12 @@ class GLM:
                                     w.assign(random_w)
 
                         # reset optimizer
-                        if opt == "adam":
-                            optimizer = tf.keras.optimizers.Adam(
+                        if self.optimizer == "adam":
+                            opt = tf.keras.optimizers.Adam(
                                 learning_rate=self.learning_rate
                             )
-                        elif opt == "sgdm":
-                            optimizer = tf.keras.optimizers.SGD(
+                        elif self.optimizer == "sgdm":
+                            opt = tf.keras.optimizers.SGD(
                                 learning_rate=self.learning_rate, momentum=self.momentum
                             )
 
