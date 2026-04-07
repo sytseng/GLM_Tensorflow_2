@@ -178,7 +178,7 @@ class GLM:
 
         elif np.logical_and(self.loss_type == "poisson", self.activation != "exp"):
             self.loss_func = lambda Y, Y_hat, Y_act: tf.reduce_sum(
-                Y_act - Y * tf.log(Y_act + 1e-33)
+                Y_act - Y * tf.math.log(Y_act + 1e-33)
             )
 
         elif self.loss_type == "gaussian":
@@ -527,12 +527,12 @@ class GLM:
                                     w.assign(random_w)
 
                         # reset optimizer
-                        if opt == "adam":
-                            optimizer = tf.keras.optimizers.Adam(
+                        if self.optimizer == "adam":
+                            opt = tf.keras.optimizers.Adam(
                                 learning_rate=self.learning_rate
                             )
-                        elif opt == "sgdm":
-                            optimizer = tf.keras.optimizers.SGD(
+                        elif self.optimizer == "sgdm":
+                            opt = tf.keras.optimizers.SGD(
                                 learning_rate=self.learning_rate, momentum=self.momentum
                             )
 
