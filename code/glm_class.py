@@ -178,7 +178,7 @@ class GLM:
 
         elif np.logical_and(self.loss_type == "poisson", self.activation != "exp"):
             self.loss_func = lambda Y, Y_hat, Y_act: tf.reduce_sum(
-                Y_act - Y * tf.log(Y_act + 1e-33)
+                Y_act - Y * tf.math.log(Y_act + 1e-33)
             )
 
         elif self.loss_type == "gaussian":
